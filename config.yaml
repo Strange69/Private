@@ -153,7 +153,7 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/Strange69/Private/main/provider1.yaml?token=GHSAT0AAAAAAB2EDH6NUZ73LUKAV5EKY7GYY245U6Q"
     interval: 3600
-    path: ./provider1.yaml
+    path: ./provider.yaml
     health-check:
       enable: true
       interval: 600
