@@ -149,10 +149,9 @@ dns:
   #   '+.internal.crop.com': '10.0.0.1'
 
 proxy-providers:
-  provider1:
+  provider:
     type: http
-    url: "https://raw.githubusercontent.com/Strange69/Private/main/provider1.yaml?token=GHSAT0AAAAAAB2EDH6NUZ73LUKAV5EKY7GYY245U6Q"
-    interval: 3600
+    url: "https://raw.githubusercontent.com/Strange69/Clash/main/provider1.yaml"    interval: 3600
     path: ./provider.yaml
     health-check:
       enable: true
@@ -171,7 +170,7 @@ proxy-groups:
   - name: 🔰Proxy
     type: select
     use:
-     - provider1
+     - provider
 rules:
   - DOMAIN-SUFFIX,google.com,🔰Proxy
   - DOMAIN-KEYWORD,google,🔰Proxy
