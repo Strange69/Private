@@ -150,7 +150,7 @@ dns:
 
 proxy-providers:
   provider:
-    type: url
+    type: http
     url: "https://raw.githubusercontent.com/Strange69/Clash/main/provider1.yaml"    
     interval: 3600
     path: ./provider.yaml
