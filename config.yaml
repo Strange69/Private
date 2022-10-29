@@ -173,8 +173,39 @@ proxy-groups:
      - provider
 rules:
   - DOMAIN-SUFFIX,google.com,🔰Proxy
+  - DOMAIN-SUFFIX,google,🔰Proxy
   - DOMAIN-KEYWORD,google,🔰Proxy
   - DOMAIN,google.com,🔰Proxy
+  - DOMAIN-SUFFIX,fb.com,🔰Proxy
+  - DOMAIN-SUFFIX,fb.me,🔰Proxy
+  - DOMAIN-SUFFIX,fbaddins.com,🔰Proxy
+  - DOMAIN-SUFFIX,fbcdn.net,🔰Proxy
+  - DOMAIN-SUFFIX,fbsbx.com,🔰Proxy
+  - DOMAIN-SUFFIX,fbworkmail.com,🔰Proxy
+  - DOMAIN-SUFFIX,instagram.com,🔰Proxy
+  - DOMAIN-SUFFIX,m.me,🔰Proxy
+  - DOMAIN-SUFFIX,messenger.com,🔰Proxy
+  - DOMAIN-SUFFIX,oculus.com,🔰Proxy
+  - DOMAIN-SUFFIX,oculuscdn.com,🔰Proxy
+  - DOMAIN-SUFFIX,rocksdb.org,🔰Proxy
+  - DOMAIN-SUFFIX,whatsapp.com,🔰Proxy
+  - DOMAIN-SUFFIX,whatsapp.net,🔰Proxy
+  - DOMAIN-KEYWORD,facebook,🔰Proxy
+  - DOMAIN-KEYWORD,twitter,🔰Proxy
+  - DOMAIN-SUFFIX,t.me,🔰Proxy
+  - DOMAIN-SUFFIX,tdesktop.com,🔰Proxy
+  - DOMAIN-SUFFIX,telegra.ph,🔰Proxy
+  - DOMAIN-SUFFIX,telegram.me,🔰Proxy
+  - DOMAIN-SUFFIX,telegram.org,🔰Proxy
+  - DOMAIN-SUFFIX,local,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
+  - IP-CIDR,125.209.208.0/20,🔰Proxy,no-resolve
+  - IP-CIDR,147.92.128.0/17,🔰Proxy,no-resolve
+  - IP-CIDR,203.104.144.0/21,🔰Proxy,no-resolve
   - DOMAIN-SUFFIX,ad.com,REJECT
   - SRC-IP-CIDR,192.168.1.201/32,DIRECT
   # optional param "no-resolve" for IP rules (GEOIP, IP-CIDR, IP-CIDR6)
