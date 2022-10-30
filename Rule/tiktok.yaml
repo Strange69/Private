@@ -1,1 +1,30 @@
+payload:
 
+
+
+  # > tiktok
+  - DOMAIN-SUFFIX,mcs-sg.tiktokv.com
+  - DOMAIN-SUFFIX,s20.tiktokcdn.com
+  - DOMAIN-SUFFIX,sf16-sg.tiktokcdn.com
+  - DOMAIN-SUFFIX,lf16-tiktok-common.ibytedtos.com
+  - DOMAIN-SUFFIX,mcs-sg.tiktok.com
+  - DOMAIN-SUFFIX,t.tiktok.com
+  - DOMAIN-SUFFIX,mssdk-sg.tiktokv.com
+  - DOMAIN-SUFFIX,p16-sign-va.tiktokcdn.com
+  - DOMAIN-SUFFIX,p16-tiktokcdn-com.akamaized.net
+  - DOMAIN-SUFFIX,v39-as.tiktokcdn.com
+  - DOMAIN-SUFFIX,www.tiktok.com
+  - DOMAIN-SUFFIX,v16.tiktokcdn.com
+  - DOMAIN-SUFFIX,p16-amd-va.tiktokcdn.com
+  - DOMAIN-SUFFIX,p16-sign.tiktokcdn-us.com
+  - DOMAIN-SUFFIX,v16-web.tiktok.com
+  - DOMAIN-SUFFIX,lf16-tiktok-web.ibytedtos.com
+  - DOMAIN-SUFFIX,im-ws-sg.tiktok.com
+  - DOMAIN-SUFFIX,im-api-sg.tiktok.com
+  - DOMAIN-SUFFIX,p77-sign-sg.tiktokcdn.com
+  - DOMAIN-SUFFIX,pull-flv-l1-sg01.tiktokcdn.com
+  - DOMAIN-SUFFIX,pull-flv-f1-sg01.tiktokcdn.com
+  - DOMAIN-SUFFIX,p16-webcast.tiktokcdn.com
+  - DOMAIN-SUFFIX,p21-webcast.tiktokcdn.com
+  - DOMAIN-SUFFIX,vcs-sg.byteoversea.com
+  - DOMAIN-SUFFIX,verify-sg.byteoversea.com
