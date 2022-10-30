@@ -149,6 +149,7 @@ script:
         return "🔰Proxy"
 rules:
 
-- IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+- IP-CIDR,198.18.0.1/16,REJECT
+-RULE,Youtube,🔰Proxy
 - GEOIP,CN,DIRECT
 - MATCH,🔰Proxy
