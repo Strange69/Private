@@ -150,6 +150,6 @@ script:
 rules:
 
 - IP-CIDR,198.18.0.1/16,REJECT
-- RULE,Youtube,🔰Proxy
+- Youtube,🔰Proxy
 - GEOIP,CN,DIRECT
 - MATCH,🔰Proxy
