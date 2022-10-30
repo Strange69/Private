@@ -246,7 +246,7 @@ rules:
 - RULE-SET,Facebook,🔰Proxy
 - RULE-SET,Block,REJECT
 - RULE-SET,LAN,DIRECT
-- RULE-SET,google,🔰Proxy
+- RULE-SET,Google,🔰Proxy
 - RULE-SET,Tiktok,🔰Proxy
 - RULE-SET,Youtube,🔰Proxy
 - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
