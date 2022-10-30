@@ -1,1 +1,31 @@
+payload:  
 
+
+
+  # > FACEBOOK dan MESSENGER
+  - DOMAIN-SUFFIX,www.facebook.com
+  - DOMAIN-SUFFIX,static.xx.fbcdn.net
+  - DOMAIN-SUFFIX,web.facebook.com
+  - DOMAIN-SUFFIX,scontent.xx.fbcdn.net
+  - DOMAIN-SUFFIX,scontent-hkt1-2.xx.fbcdn.net
+  - DOMAIN-SUFFIX,graph.facebook.com
+  - DOMAIN-SUFFIX,gateway.facebook.com
+  - DOMAIN-SUFFIX,scontent-sin6-4.xx.fbcdn.net
+  - DOMAIN-SUFFIX,scontent-den4-1.xx.fbcdn.net
+  - DOMAIN-SUFFIX,scontent-xsp1-3.xx.fbcdn.net
+  - DOMAIN-SUFFIX,scontent-sin6-2.xx.fbcdn.net
+  - DOMAIN-SUFFIX,scontent-sin6-3.xx.fbcdn.net
+  - DOMAIN-SUFFIX,video-sin6-1.xx.fbcdn.net
+  - DOMAIN-SUFFIX,video-xsp1-3.xx.fbcdn.net
+  - DOMAIN-SUFFIX,video-xsp1-2.xx.fbcdn.net
+  - DOMAIN-SUFFIX,video-xsp1-1.xx.fbcdn.net
+  - DOMAIN-SUFFIX,video-sin6-2.xx.fbcdn.net
+  - DOMAIN-SUFFIX,video-sin6-3.xx.fbcdn.net
+  - DOMAIN-SUFFIX,video-sin6-4.xx.fbcdn.net
+  - DOMAIN-SUFFIX,scontent-sin6-1.xx.fbcdn.net
+  - DOMAIN-SUFFIX,edge-chat.facebook.com
+  - DOMAIN-SUFFIX,b-graph.facebook.com
+  - DOMAIN-SUFFIX,b-www.facebook.com
+  - DOMAIN-SUFFIX,scontent.fcgk6-2.fna.fbcdn.net
+  - DOMAIN-SUFFIX,mqtt-mini.facebook.com
+  - DOMAIN-SUFFIX,snaptu-z.facebook.com
