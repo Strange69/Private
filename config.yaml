@@ -188,7 +188,7 @@ rule-providers:
     path: ./google.yaml
     
   Tiktok:
-    type: httl
+    type: http
     url: "https://raw.githubusercontent.com/Strange69/Private/main/Rule/tiktok.yaml"
     behavior: classical
     path: ./tiktok.yaml
