@@ -43,10 +43,7 @@ tun:
     - tcp://108.137.44.39:53
 experimental:
   interface-name: en0
-  
-  
 
-ipv6: false
 proxy-providers:
   strangeproxy:
     type: http
