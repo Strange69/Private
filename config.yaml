@@ -5,7 +5,7 @@ redir-port: 7892
 tproxy-port: 7893
 mixed-port: 7890
 allow-lan: true
-mode: script
+mode: rule
 log-level: info
 ipv6: false
 external-controller: 127.0.0.1:9090
