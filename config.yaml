@@ -1,217 +1,266 @@
-# Port of HTTP(S) proxy server on the local end
+---
 port: 7890
-
-# Port of SOCKS5 proxy server on the local end
 socks-port: 7891
-
-# Transparent proxy server port for Linux and macOS (Redirect TCP and TProxy UDP)
-# redir-port: 7892
-
-# Transparent proxy server port for Linux (TProxy TCP and TProxy UDP)
-# tproxy-port: 7893
-
-# HTTP(S) and SOCKS4(A)/SOCKS5 server on the same port
-# mixed-port: 7890
-
-# authentication of local SOCKS5/HTTP(S) server
-# authentication:
-#  - "user1:pass1"
-#  - "user2:pass2"
-
-# Set to true to allow connections to the local-end server from
-# other LAN IP addresses
+redir-port: 7892
+tproxy-port: 7893
+mixed-port: 7890
 allow-lan: true
-
-# This is only applicable when `allow-lan` is `true`
-# '*': bind all IP addresses
-# 192.168.122.11: bind a single IPv4 address
-# "[aaaa::a8aa:ff:fe09:57d8]": bind a single IPv6 address
-bind-address: '*'
-
-# Clash router working mode
-# rule: rule-based packet routing
-# global: all packets will be forwarded to a single endpoint
-# direct: directly forward the packets to the Internet
-mode: rule
-
-# Clash by default prints logs to STDOUT
-# info / warning / error / debug / silent
+mode: script
 log-level: info
-
-# When set to false, resolver won't translate hostnames to IPv6 addresses
 ipv6: false
-
-# RESTful web API listening address
 external-controller: 127.0.0.1:9090
-
-# A relative path to the configuration directory or an absolute path to a
-# directory in which you put some static web resource. Clash core will then
-# serve it at `http://{{external-controller}}/ui`.
 external-ui: folder
-
-# Secret for the RESTful API (optional)
-# Authenticate by spedifying HTTP header `Authorization: Bearer ${secret}`
-# ALWAYS set a secret if RESTful API is listening on 0.0.0.0
-# secret: ""
-
-# Outbound interface name
 interface-name: en0
-
-# fwmark on Linux only
-routing-mark: 6666
-
-# Static hosts for DNS server and connection establishment (like /etc/hosts)
-#
-# Wildcard hostnames are supported (e.g. *.clash.dev, *.foo.*.example.com)
-# Non-wildcard domain names have a higher priority than wildcard domain names
-# e.g. foo.example.com > *.example.com > .example.com
-# P.S. +.foo.com equals to .foo.com and foo.com
-hosts:
-  # '*.clash.dev': 127.0.0.1
-  # '.dev': 127.0.0.1
-  # 'alpha.clash.dev': '::1'
-
-profile:
-  # Store the `select` results in $HOME/.config/clash/.cache
-  # set false If you don't want this behavior
-  # when two different configurations have groups with the same name, the selected values are shared
-  store-selected: false
-
-  # persistence fakeip
-  store-fake-ip: true
-
-# DNS server settings
-# This section is optional. When not present, the DNS server will be disabled.
 dns:
-  enable: false
-  listen: 0.0.0.0:53
-  # ipv6: false # when the false, response to AAAA questions will be empty
-
-  # These nameservers are used to resolve the DNS nameserver hostnames below.
-  # Specify IP addresses only
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  listen: 127.0.0.1:7874
   default-nameserver:
-    - 114.114.114.114
-    - 8.8.8.8
-  enhanced-mode: fake-ip # or redir-host (not recommended)
-  fake-ip-range: 198.18.0.1/16 # Fake IP addresses pool CIDR
-  # use-hosts: true # lookup hosts and return IP record
-  
-  # Hostnames in this list will not be resolved with fake IPs
-  # i.e. questions to these domain names will always be answered with their
-  # real IP addresses
-  # fake-ip-filter:
-  #   - '*.lan'
-  #   - localhost.ptlogin2.qq.com
-  
-  # Supports UDP, TCP, DoT, DoH. You can specify the port to connect to.
-  # All DNS questions are sent directly to the nameserver, without proxies
-  # involved. Clash answers the DNS question with the first result gathered.
+  - 114.114.114.114
+  - 119.29.29.29
+  - 8.8.8.8
+  - 8.8.4.4
+  - 1.1.1.1
+  - 1.0.0.1
   nameserver:
-    - 114.114.114.114 # default value
-    - 8.8.8.8 # default value
-    - tls://dns.rubyfish.cn:853 # DNS over TLS
-    - https://1.1.1.1/dns-query # DNS over HTTPS
-    - dhcp://en0 # dns from dhcp
-    # - '8.8.8.8#en0'
-
-  # When `fallback` is present, the DNS server will send concurrent requests
-  # to the servers in this section along with servers in `nameservers`.
-  # The answers from fallback servers are used when the GEOIP country
-  # is not `CN`.
-  # fallback:
-   #  - tcp://1.1.1.1
-    # - 'tcp://1.1.1.1#en0'
-
-  # If IP addresses resolved with servers in `nameservers` are in the specified
-  # subnets below, they are considered invalid and results from `fallback`
-  # servers are used instead.
-  #
-  # IP address resolved with servers in `nameserver` is used when
-  # `fallback-filter.geoip` is true and when GEOIP of the IP address is `CN`.
-  #
-  # If `fallback-filter.geoip` is false, results from `nameserver` nameservers
-  # are always used if not match `fallback-filter.ipcidr`.
-  #
-  # This is a countermeasure against DNS pollution attacks.
-   #fallback-filter:
-    # geoip: true
-     #-code: CN
-     #ipcidr:
-     #  - 240.0.0.0/4
-#     domain:
- #      - '+.google.com'
- #      - '+.facebook.com'
-#       - '+.youtube.com'
-  
-  # Lookup domains via specific nameservers
-  # nameserver-policy:
-  #   'www.baidu.com': '114.114.114.114'
-  #   '+.internal.crop.com': '10.0.0.1'
-
+  - 114.114.114.114
+  - 119.29.29.29
+  - 8.8.8.8
+  - 8.8.4.4
+  - 1.1.1.1
+  - 1.0.0.1
+  fallback:
+  - https://cloudflare-dns.com/dns-query
+  - https://dns.google/dns-query
+  - https://1.1.1.1/dns-query
+  - tls://8.8.8.8:853
+  - tls://dns.rubyfish.cn:853
+  - https://1.1.1.1/dns-query
+  fallback-filter:
+    geoip: true
+    ipcidr:
+    - 0.0.0.0/8
+    - 10.0.0.0/8
+    - 100.64.0.0/10
+    - 127.0.0.0/8
+    - 169.254.0.0/16
+    - 172.16.0.0/12
+    - 192.0.0.0/24
+    - 192.0.2.0/24
+    - 192.88.99.0/24
+    - 192.168.0.0/16
+    - 198.18.0.0/15
+    - 198.51.100.0/24
+    - 203.0.113.0/24
+    - 224.0.0.0/4
+    - 240.0.0.0/4
+    - 255.255.255.255/32
+    domain:
+    - "+.google.com"
+    - "+.facebook.com"
+    - "+.youtube.com"
+    - "+.githubusercontent.com"
+  fake-ip-filter:
+  - "*.lan"
+  - time.windows.com
+  - time.nist.gov
+  - time.apple.com
+  - time.asia.apple.com
+  - "*.ntp.org.cn"
+  - "*.openwrt.pool.ntp.org"
+  - time1.cloud.tencent.com
+  - time.ustc.edu.cn
+  - pool.ntp.org
+  - ntp.ubuntu.com
+  - ntp.aliyun.com
+  - ntp1.aliyun.com
+  - ntp2.aliyun.com
+  - ntp3.aliyun.com
+  - ntp4.aliyun.com
+  - ntp5.aliyun.com
+  - ntp6.aliyun.com
+  - ntp7.aliyun.com
+  - time1.aliyun.com
+  - time2.aliyun.com
+  - time3.aliyun.com
+  - time4.aliyun.com
+  - time5.aliyun.com
+  - time6.aliyun.com
+  - time7.aliyun.com
+  - "*.time.edu.cn"
+  - time1.apple.com
+  - time2.apple.com
+  - time3.apple.com
+  - time4.apple.com
+  - time5.apple.com
+  - time6.apple.com
+  - time7.apple.com
+  - time1.google.com
+  - time2.google.com
+  - time3.google.com
+  - time4.google.com
+  - music.163.com
+  - "*.music.163.com"
+  - "*.126.net"
+  - musicapi.taihe.com
+  - music.taihe.com
+  - songsearch.kugou.com
+  - trackercdn.kugou.com
+  - "*.kuwo.cn"
+  - api-jooxtt.sanook.com
+  - api.joox.com
+  - joox.com
+  - y.qq.com
+  - "*.y.qq.com"
+  - streamoc.music.tc.qq.com
+  - mobileoc.music.tc.qq.com
+  - isure.stream.qqmusic.qq.com
+  - dl.stream.qqmusic.qq.com
+  - aqqmusic.tc.qq.com
+  - amobile.music.tc.qq.com
+  - "*.xiami.com"
+  - "*.music.migu.cn"
+  - music.migu.cn
+  - "*.msftconnecttest.com"
+  - "*.msftncsi.com"
+  - localhost.ptlogin2.qq.com
+  - "+.srv.nintendo.net"
+  - "+.stun.playstation.net"
+  - xbox.*.microsoft.com
+  - "+.xboxlive.com"
+  - proxy.golang.org
+  - stun.*.*
+  - stun.*.*.*
+  - heartbeat.belkin.com
+  - "*.linksys.com"
+  - "*.linksyssmartwifi.com"
+  - "+.battlenet.com.cn"
+ipv6: false
 proxy-providers:
-  provider1:
+  strangeproxy:
     type: http
-    url: "https://raw.githubusercontent.com/Strange69/Clash/main/provider1.yaml"    
+    url: "https://raw.githubusercontent.com/Strange69/Private/main/Proxy/strangeproxy.yaml"
     interval: 3600
-    path: ./provider1.yaml
+    path: ./strangeproxy.yaml
     health-check:
       enable: true
-      interval: 300
-      # lazy: true
+      interval: 99
+      lazy: true
       url: http://www.gstatic.com/generate_204
-#  test:
-#    type: file
-#    path: /test.yaml
-#    health-check:
-#      enable: true
-#      interval: 36000
-#      url: http://www.gstatic.com/generate_204
-
+      
 proxy-groups:
-  - name: 🔰Proxy
-    type: select
-    use:
-     - provider1
+- name: 🔰Proxy
+  type: select
+  use:
+  - strangeproxy
+  
+rule-providers:
+  
+  Browser:
+    type: http
+    url: "https://raw.githubusercontent.com/Strange69/Private/main/Rule/browser.yaml"
+    behavior: classical
+    path: ./browser.yaml
+    
+  Facebook:
+    type: http
+    url: "https://raw.githubusercontent.com/Strange69/Private/main/Rule/facebook.yaml"
+    behavior: classical
+    path: ./facebook.yaml
+  
+  Block:
+    type: http
+    url: "https://raw.githubusercontent.com/Strange69/Private/main/Rule/block.yaml"
+    behavior: classical
+    path: ./block.yaml
+    
+  LAN:
+    type: http
+    url: "https://raw.githubusercontent.com/Strange69/Private/main/Rule/lan.yaml"
+    behavior: classical
+    path: ./lan.yaml
+  
+  Google:
+    type: http
+    url: "https://raw.githubusercontent.com/Strange69/Private/main/Rule/google.yaml"
+    behavior: classical
+    path: ./google.yaml
+    
+  Tiktok:
+    type: httl
+    url: "https://raw.githubusercontent.com/Strange69/Private/main/Rule/tiktok.yaml"
+    behavior: classical
+    path: ./tiktok.yaml
+  
+  Youtube:
+    type: http
+    url: "https://raw.githubusercontent.com/Strange69/Private/main/Rule/youtube.yaml"
+    behavior: classical
+    path: ./youtube.yaml
+    
+  
+script:
+  code: |
+    def main(ctx, metadata):
+        ruleset_action = {"Browser": "🔰Proxy",
+            "Facebook": "DIRECT",
+            "Block": "REJECT",
+            "LAN": "DIRECT",
+            "Google": "🔰Proxy",
+            "Tiktok": "🔰Proxy",
+            "Youtube": "🔰Proxy",
+          }
+
+        port = int(metadata["dst_port"])
+
+        if metadata["network"] == "UDP":
+            if port == "443,3478,4244,5222,5223,5228,5288,5242,5349,17000,20030,20031,34784,45395,50318,59234":
+                ctx.log('[Script] matched QUIC traffic use browser')
+                return "🔰Proxy"
+
+        if metadata["dst_ip"] == "":
+            metadata["dst_ip"] = ctx.resolve_ip(metadata["host"])
+
+        port_list = [21, 22, 23, 53, 80, 123, 143, 194, 443, 465, 587, 853, 993, 995, 998, 2052, 2053, 2082, 2083, 2086, 2095, 2096, 5222, 5223, 5228, 5229, 5230, 5242, 8080, 8443, 8880, 8888, 8889, 17000, 20030, 20031, 20443, 49152, 50318, 50473, 50458, 50460, 50457, 50432, 50455, 50471, 50473, 50456, 59234]
+        if port not in port_list:
+            ctx.log('[Script] not common port use direct')
+            return "DIRECT"
+
+        if metadata["dst_ip"] == "":
+            return "DIRECT"
+
+        for ruleset in ruleset_action:
+            if ctx.rule_providers[ruleset].match(metadata):
+                return ruleset_action[ruleset]
+
+        code = ctx.geoip(metadata["dst_ip"])
+        if code == "CN":
+            ctx.log('[Script] Geoip CN')
+            return "DIRECT"
+
+        ctx.log('[Script] FINAL')
+        return "🔰Proxy"
 rules:
-  - DOMAIN-SUFFIX,google.com,🔰Proxy
-  - DOMAIN-SUFFIX,google,🔰Proxy
-  - DOMAIN-KEYWORD,google,🔰Proxy
-  - DOMAIN,google.com,🔰Proxy
-  - DOMAIN-SUFFIX,fb.com,🔰Proxy
-  - DOMAIN-SUFFIX,fb.me,🔰Proxy
-  - DOMAIN-SUFFIX,fbaddins.com,🔰Proxy
-  - DOMAIN-SUFFIX,fbcdn.net,🔰Proxy
-  - DOMAIN-SUFFIX,fbsbx.com,🔰Proxy
-  - DOMAIN-SUFFIX,fbworkmail.com,🔰Proxy
-  - DOMAIN-SUFFIX,instagram.com,🔰Proxy
-  - DOMAIN-SUFFIX,m.me,🔰Proxy
-  - DOMAIN-SUFFIX,messenger.com,🔰Proxy
-  - DOMAIN-SUFFIX,oculus.com,🔰Proxy
-  - DOMAIN-SUFFIX,oculuscdn.com,🔰Proxy
-  - DOMAIN-SUFFIX,rocksdb.org,🔰Proxy
-  - DOMAIN-SUFFIX,whatsapp.com,🔰Proxy
-  - DOMAIN-SUFFIX,whatsapp.net,🔰Proxy
-  - DOMAIN-KEYWORD,facebook,🔰Proxy
-  - DOMAIN-KEYWORD,twitter,🔰Proxy
-  - DOMAIN-SUFFIX,t.me,🔰Proxy
-  - DOMAIN-SUFFIX,tdesktop.com,🔰Proxy
-  - DOMAIN-SUFFIX,telegra.ph,🔰Proxy
-  - DOMAIN-SUFFIX,telegram.me,🔰Proxy
-  - DOMAIN-SUFFIX,telegram.org,🔰Proxy
-  - DOMAIN-SUFFIX,local,DIRECT
-  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
-  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
-  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
-  - IP-CIDR,125.209.208.0/20,🔰Proxy,no-resolve
-  - IP-CIDR,147.92.128.0/17,🔰Proxy,no-resolve
-  - IP-CIDR,203.104.144.0/21,🔰Proxy,no-resolve
-  - DOMAIN-SUFFIX,ad.com,REJECT
-  - SRC-IP-CIDR,192.168.1.201/32,DIRECT
-  # optional param "no-resolve" for IP rules (GEOIP, IP-CIDR, IP-CIDR6)
-  - IP-CIDR,127.0.0.0/8,DIRECT
-  - GEOIP,MM,DIRECT
-  - DST-PORT,80,DIRECT
-  - SRC-PORT,7777,DIRECT
-  - MATCH,🔰Proxy
+- RULE-SET,Browser,🔰Proxy
+- RULE-SET,Facebook,🔰Proxy
+- RULE-SET,Block,REJECT
+- RULE-SET,LAN,DIRECT
+- RULE-SET,google,🔰Proxy
+- RULE-SET,Tiktok,🔰Proxy
+- RULE-SET,Youtube,🔰Proxy
+- IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+- GEOIP,CN,DIRECT
+- MATCH,🔰Proxy
+tun:
+  enable: true
+  stack: gvisor
+  dns-hijack:
+  - tcp://8.8.8.8:53
+  - tcp://8.8.4.4:53
+profile:
+  store-selected: true
+experimental:
+  interface-name: en0
+secret: Imstrange
+bind-address: "*"
