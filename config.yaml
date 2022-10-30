@@ -148,13 +148,7 @@ script:
         ctx.log('[Script] FINAL')
         return "🔰Proxy"
 rules:
-- RULE-SET,Browser,🔰Proxy
-- RULE-SET,Facebook,🔰Proxy
-- RULE-SET,Block,REJECT
-- RULE-SET,LAN,DIRECT
-- RULE-SET,Google,🔰Proxy
-- RULE-SET,Tiktok,🔰Proxy
-- RULE-SET,Youtube,🔰Proxy
+
 - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
 - GEOIP,CN,DIRECT
 - MATCH,🔰Proxy
