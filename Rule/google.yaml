@@ -1,2 +1,5 @@
 payload:
-  - DOMAIN-KEYWORD,google
+
+
+  # > GOOGLE
+  - DOMAIN-SUFFIX,connectivitycheck.gstatic.com
