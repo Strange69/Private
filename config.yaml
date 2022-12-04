@@ -3,7 +3,7 @@ port: 7890
 socks-port: 7891
 redir-port: 7892
 mixed-port: 7893
-mode: rule
+mode: script
 log-level: silent
 allow-lan: true
 external-controller: 0.0.0.0:9090
@@ -147,9 +147,9 @@ script:
 
         ctx.log('[Script] FINAL')
         return "🔰Proxy"
-rules:
+#rules:
 
-- IP-CIDR,198.18.0.1/16,REJECT
-- Youtube,🔰Proxy
-- GEOIP,CN,DIRECT
-- MATCH,🔰Proxy
+#- IP-CIDR,198.18.0.1/16,REJECT
+#- Youtube,🔰Proxy
+#- GEOIP,CN,DIRECT
+#- MATCH,🔰Proxy
