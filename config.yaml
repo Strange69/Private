@@ -1,10 +1,9 @@
-
 port: 7890
 socks-port: 7891
 redir-port: 7892
 mixed-port: 7893
 mode: script
-log-level: silent
+log-level: info
 allow-lan: true
 external-controller: 0.0.0.0:9090
 bind-address: "*"
