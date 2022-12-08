@@ -1,4 +1,3 @@
 proxies:
-  - {name: 🇸🇬 Singapore, server: sg-ss.sshmax.xyz, port: 8388, type: ss, cipher: chacha20-ietf-poly1305, password: NDlmNGQy, udp: false}
+  - {name: 🇸🇬 Singapore, server: 35.240.172.121, port: 57694, type: ss, cipher: aes-256-gcm, password: hbKyvNHYT3, udp: false}
   - {"type":"ss","name":"🇺🇸US_AzadNet(15)","server":"38.143.66.64","port":5601,"cipher":"aes-256-gcm","password":"Y6R9pAtvxxzmGC"}
-  - {"type":"ss","name":"🇨🇦CA_AzadNet(1)","server":"134.195.196.231","port":8119,"cipher":"aes-256-gcm","password":"cdBIDV42DCwnfIN"}
