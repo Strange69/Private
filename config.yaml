@@ -59,6 +59,7 @@ proxy-groups:
   type: select
   use:
   - strangeproxy
+  - DIRECT
   
 rule-providers:
   
@@ -109,7 +110,7 @@ script:
   code: |
     def main(ctx, metadata):
         ruleset_action = {"Browser": "🔰Proxy",
-            "Facebook": "DIRECT",
+            "Facebook": "🔰Proxy",
             "Block": "REJECT",
             "LAN": "DIRECT",
             "Google": "🔰Proxy",
