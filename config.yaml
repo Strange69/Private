@@ -59,7 +59,6 @@ proxy-groups:
   type: select
   use:
   - strangeproxy
-  - DIRECT
   
 rule-providers:
   
