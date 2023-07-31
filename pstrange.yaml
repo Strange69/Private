@@ -1,3 +1,5 @@
 proxies:
-  - {name: 🇸🇬 Singapore, server: 35.240.172.121, port: 57694, type: ss, cipher: aes-256-gcm, password: hbKyvNHYT3, udp: false}
-  - {"type":"ss","name":"🇺🇸US_AzadNet(15)","server":"38.143.66.64","port":5601,"cipher":"aes-256-gcm","password":"Y6R9pAtvxxzmGC"}
+  - {"name":"🇸🇬SG(AzadNet.t.me)_024","type":"vmess","server":"meetzoom.disnet.gq","port":443,"cipher":"auto","uuid":"a869c557-5c7d-426f-9039-0279c16352bc","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/vmessws","headers":{"host":"meetzoom.disnet.gq"}}}
+  - {"name":"🇬🇧GB(AzadNet.t.me)_047","type":"ss","server":"51.68.206.229","port":8080,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"} 
+  - {"name":"🇨🇦CA(AzadNet.t.me)_010","type":"vmess","server":"ca1-vmess.greenssh.xyz","port":80,"cipher":"auto","uuid":"2557e01c-dbcc-4d34-a259-11ae69f5f041","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/","headers":{"host":"ca1-vmess.greenssh.xyz"}}}
+  
